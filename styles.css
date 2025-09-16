@@ -928,16 +928,14 @@
     
     @media (max-width: 768px) {
       .about-container {
-        padding: 1rem;
-        max-width: 100%;
+        padding: 0;
         width: 100%;
       }
       
       .about-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 2rem 1rem;
-        width: 95%;
+        padding: 1rem;
+        width: 100%;
       }
       
       .intro-text {
