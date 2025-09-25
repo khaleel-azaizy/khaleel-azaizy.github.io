@@ -610,6 +610,15 @@
       transform: scale(1.1);
       background: rgba(0, 177, 94, 0.1);
     }
+
+    .accent-icon {
+      color: var(--primary-light);
+      transition: color 0.3s ease;
+    }
+
+    [data-theme="dark"] .accent-icon {
+      color: var(--primary);
+    }
     
     .skill-name {
       font-size: 0.9rem;
