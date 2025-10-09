@@ -137,19 +137,11 @@
       const percentEl = document.getElementById('loaderPercent');
       const barEl = document.getElementById('loaderBar');
       const phaseEl = document.getElementById('loaderPhase');
-      const wordsWrap = document.getElementById('loaderWords');
+      
       const shownKey = 'loaderShown';
       const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-      const phases = [
-        {label:'INIT',at:5},{label:'PREP',at:25},{label:'HYDRATE',at:50},{label:'RENDER',at:75},{label:'READY',at:100}
-      ];
-      phases.forEach((p,i)=>{
-        const chip=document.createElement('span');
-        chip.textContent=p.label;
-        chip.style.animationDelay=(0.25+i*0.12)+'s';
-        wordsWrap.appendChild(chip);
-      });
-
+     
+     
       // Fast path (already seen loader)
       if(sessionStorage.getItem(shownKey)){
         screen.classList.add('hidden');

@@ -20,7 +20,7 @@
       --background: #050805;
       --bottomBackground: #016b3a23;
       --card-bg: #0e150f;
-      --text: #dfeee4;
+      --text: #c4d6c5;
       --shadow: rgba(0,0,0,0.7);
       --headerBackground: rgba(0,177,93,0.12);
       --hero-gradient: linear-gradient(-45deg,#001a0f,#003821,#004b2c,#002317);
@@ -1067,6 +1067,7 @@
     
     .education-highlights {
       list-style: none;
+      text-align: left;
       display: grid;
       gap: 0.6rem;
       margin: 0;
@@ -1164,7 +1165,7 @@
       margin-top: 0.5rem;
       margin-bottom: 3rem;
     }
-    
+ 
     .projects-filter {
       display: flex;
       justify-content: center;
@@ -1572,7 +1573,7 @@
   .arrow i{
     rotate: -90deg;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     background-color: var(--card-bg);
     box-shadow: 0 4px 15px var(--shadow);
     border-radius: 50%;
