@@ -8,7 +8,7 @@
       --transition: 0.3s ease;
     }
     [data-theme="light"] {
-      --background: #ffffff;
+      --background: #f3fbf1;
       --bottomBackground: #00b15e18;
       --card-bg: #ffffff;
       --text: #1a1a1a;
@@ -1705,9 +1705,9 @@ nav#navbar .theme-toggle:hover {
   padding: .1rem;
   z-index: 120;
   box-shadow: 0 -4px 18px -6px rgba(0,0,0,0.28), 0 -1px 4px rgba(0,0,0,0.08);
-  width: 95vw;
+  width:100%;
   margin: 0 auto;
-  border-radius: 14px 14px 0 0;
+  border-radius: 0;
 }
 
 [data-theme="dark"] .bottom-nav-mobile {
