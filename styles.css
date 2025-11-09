@@ -1566,6 +1566,8 @@
   .copy-btn:focus {
     outline: 2px solid var(--primary);
   }
+    .accent-icon { color: var(--primary-light); transition: color .3s ease; }
+    [data-theme="dark"] .accent-icon { color: var(--primary); }
   .arrow{
     width: 100%;
     text-align: center;
