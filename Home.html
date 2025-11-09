@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaleel Azaizy | Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    <link rel="stylesheet" href="Home.css">
+</head>
+<body data-theme="dark">
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="k-stroke stem"></span>
+                <span class="k-stroke upper"></span>
+                <span class="k-stroke lower"></span>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">
+                <span class="brand-badge">K</span>
+               
+            </div>
+            <ul class="nav-links">
+                <li><a  onclick="scrollToSection(0)" data-section="0"><i class="fas fa-house"></i><span class="nav-label">Home</span></a></li>
+                <li><a href="#about" onclick="scrollToSection(1)" data-section="1"><i class="fas fa-user"></i><span class="nav-label">About</span></a></li>
+                <li><a href="#projects" onclick="scrollToSection(2)" data-section="2"><i class="fas fa-diagram-project"></i><span class="nav-label">Projects</span></a></li>
+                <li><a href="#skills" onclick="scrollToSection(3)" data-section="3"><i class="fas fa-screwdriver-wrench"></i><span class="nav-label">Skills</span></a></li>
+                <li><a href="#education" onclick="scrollToSection(4)" data-section="4"><i class="fas fa-graduation-cap"></i><span class="nav-label">Education</span></a></li>
+                <li><a href="#contact" onclick="scrollToSection(5)" data-section="5"><i class="fas fa-envelope"></i><span class="nav-label">Contact</span></a></li>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </ul>
+            
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="section hero-section" id="hero" data-section="0">
+            <div class="content hero-content">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <p class="hero-kicker">Hi, I'm Khaleel</p>
+                        <h1 class="hero-title">I'm a Full-Stack Developer</h1>
+                        <p class="hero-description">
+                            I craft thoughtful digital experiences clean layouts, confident typography, and purposeful interactions that help brands speak clearly online.
+                        </p>
+                        <button class="hero-cta" onclick="scrollToSection(1)">
+                            Explore My Work
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="hero-portrait">
+                        
+                            <div class="portrait-frame">
+                                <img src="assets/programer.jpg" alt="the best programmer in the world" loading="lazy" />
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="section about-section" id="about" data-section="1">
+            <div class="content">
+                <div class="about-container">
+                    <div class="about-text">
+                        <p class="intro-text">
+                            <span class="intro-line" style="--line-index: 0;">
+                                I'm <span class="highlight">Khaleel Azaizy</span>, a B.Sc. Software Engineering candidate who enjoys turning real-world problems into reliable digital products.
+                            </span>
+                            <span class="intro-line" style="--line-index: 1;">
+                                I plan and build full-stack experiences end-to-end—shaping UX, architecting APIs, automating deployments, and weaving AI/ML features where they create measurable value.
+                            </span>
+                            <span class="intro-line" style="--line-index: 2;">
+                                Recent work spans progressive web apps for daily routines, multilingual marketplaces, and data-driven simulations that help teams move faster.
+                            </span>
+                        </p>
+                       
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Projects Finished</div>
+                                <div class="stat-sublabel">Working with heart, creating with mind</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section class="section projects-section" id="projects" data-section="2">
+            <div class="content">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                </div>
+
+                <div class="projects-slider-container">
+                    <button class="slider-btn prev-btn" onclick="slideProjects(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="projects-slider">
+                        <div class="projects-grid">
+                            <div class="project-card" data-category="web">
+                                <div class="project-image">
+                                    <img src="assets/daily-habits-tracker.png" alt="Daily Habits Tracker" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>PWA</span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>Daily Habits Tracker</h3>
+                                        <div class="project-type">Full-Stack PWA</div>
+                                    </div>
+                                    <p class="project-description">
+                                        A comprehensive web application for tracking daily habits and events with yearly/monthly calendar views.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">Node.js</span>
+                                        <span class="tech-tag">MongoDB</span>
+                                        <span class="tech-tag">JWT</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://github.com/khaleel-azaizy/Daily-Habit-Tracker" target="_blank" class="btn-secondary">
+                                            <i class="fab fa-github"></i> View Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="web">
+                                <div class="project-image">
+                                    <img src="assets/ajmotors.png" alt="AJ Motors" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-car"></i>
+                                        <span>Car Rental</span>
+                                    </div>
+                                
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>AJ Motors - Car Rental Platform</h3>
+                                        <div class="project-type">Dual-Application Platform</div>
+                                    </div>
+                                    <p class="project-description">
+                                        A comprehensive car rental platform with customer app and admin dashboard featuring multi-language support.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">Vite</span>
+                                        <span class="tech-tag">Firebase</span>
+                                        <span class="tech-tag">PWA</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://aj-motors.site/" target="_blank" class="btn-secondary">
+                                            <i class="fas fa-external-link-alt"></i> Live Demo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="web">
+                                <div class="project-image">
+                                    <img src="assets/travel-diary.jpg" alt="Travel Diary Platform" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-globe"></i>
+                                        <span>Web App</span>
+                                    </div>
+                                   
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>Travel Diary Platform</h3>
+                                        <div class="project-type">Social Platform</div>
+                                    </div>
+                                    <p class="project-description">
+                                        A full-stack social platform for travelers to share experiences with interactive maps and photo galleries.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Angular</span>
+                                        <span class="tech-tag">Express</span>
+                                        <span class="tech-tag">SQL</span>
+                                        <span class="tech-tag">Leaflet.js</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://github.com/khaleel-azaizy/webDevelopment_Travel-Diary" target="_blank" class="btn-secondary">
+                                            <i class="fab fa-github"></i> Frontend
+                                        </a>
+                                        <a href="https://github.com/khaleel-azaizy/webDevelopment_Travel-Diary-server" target="_blank" class="btn-secondary">
+                                            <i class="fab fa-github"></i> Backend
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="ml">
+                                <div class="project-image">
+                                    <img src="assets/income-classification.jpg" alt="Income Classification ANN" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-brain"></i>
+                                        <span>AI/ML</span>
+                                    </div>
+                                   
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>Income Classification ANN</h3>
+                                        <div class="project-type">Neural Network</div>
+                                    </div>
+                                    <p class="project-description">
+                                        PyTorch neural network achieving 85% accuracy in classifying income brackets from census data.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">PyTorch</span>
+                                        <span class="tech-tag">Pandas</span>
+                                        <span class="tech-tag">Scikit-learn</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://colab.research.google.com/drive/1iGGvt2jLmkD2pvvzmB9UGclbOle-PbnY" target="_blank" class="btn-secondary">
+                                            <i class="fab fa-google"></i> View Notebook
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="ml">
+                                <div class="project-image">
+                                    <img src="assets/medical-sensor.jpg" alt="Medical Sensor Simulation" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-heartbeat"></i>
+                                        <span>IoT Sim</span>
+                                    </div>
+                            
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>Medical Sensor Simulation</h3>
+                                        <div class="project-type">Healthcare IoT</div>
+                                    </div>
+                                    <p class="project-description">
+                                        Simulated patient vitals with real-time alerts, visualizations, and anomaly detection for healthcare monitoring.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Matplotlib</span>
+                                        <span class="tech-tag">IoT</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://colab.research.google.com/drive/1ysOhiV-WObB7A5XS57omxPijnWvrYH1n" target="_blank" class="btn-secondary">
+                                            <i class="fab fa-google"></i> View Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="network">
+                                <div class="project-image">
+                                    <img src="assets/file-transfer.jpg" alt="TCP/UDP File Transfer" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-network-wired"></i>
+                                        <span>Network</span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>TCP/UDP File Transfer</h3>
+                                        <div class="project-type">Network Programming</div>
+                                    </div>
+                                    <p class="project-description">
+                                        Client-server file transfer application implementing both TCP and UDP protocols with performance comparison.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Java</span>
+                                        <span class="tech-tag">TCP</span>
+                                        <span class="tech-tag">UDP</span>
+                                        <span class="tech-tag">Networking</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="ml">
+                                <div class="project-image">
+                                    <img src="assets/ml-lab.jpg" alt="Machine Learning Lab Exercises" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-flask"></i>
+                                        <span>Lab</span>
+                                    </div>
+                                  
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>Machine Learning Lab Exercises</h3>
+                                        <div class="project-type">Academic Research</div>
+                                    </div>
+                                    <p class="project-description">
+                                        Comprehensive collection of ML algorithms and techniques including supervised and unsupervised learning.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Scikit-learn</span>
+                                        <span class="tech-tag">NumPy</span>
+                                        <span class="tech-tag">Jupyter</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card" data-category="ml">
+                                <div class="project-image">
+                                    <img src="assets/nlp-project.jpg" alt="NLP Final Project" class="project-bg-img">
+                                    <div class="project-mockup">
+                                        <i class="fas fa-language"></i>
+                                        <span>NLP</span>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <div class="project-header">
+                                        <h3>NLP Final Project</h3>
+                                        <div class="project-type">Natural Language Processing</div>
+                                    </div>
+                                    <p class="project-description">
+                                        Advanced NLP project implementing text classification and sentiment analysis with transformer models.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Transformers</span>
+                                        <span class="tech-tag">PyTorch</span>
+                                        <span class="tech-tag">NLP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-btn next-btn" onclick="slideProjects(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="slider-indicators" role="tablist" aria-label="Project slides"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section class="section skills-section" id="skills" data-section="3">
+            <div class="content">
+                <div class="section-header"><h2>Skills & Tools</h2></div>
+                <div class="skills-grid">
+                    <!-- Frontend Skills -->
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-html5-plain colored"></i>
+                        </div>
+                        <span class="skill-name">HTML5</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-css3-plain colored"></i>
+                        </div>
+                        <span class="skill-name">CSS3</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-javascript-plain colored"></i>
+                        </div>
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-react-original colored"></i>
+                        </div>
+                        <span class="skill-name">React</span>
+                    </div>
+                            
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-bootstrap-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Bootstrap</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-typescript-plain colored"></i>
+                        </div>
+                        <span class="skill-name">TypeScript</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="devicon-angularjs-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Angular</span>
+                    </div>
+
+                    <!-- Backend Skills -->
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-nodejs-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Node.js</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-php-plain colored"></i>
+                        </div>
+                        <span class="skill-name">PHP</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-mongodb-plain colored"></i>
+                        </div>
+                        <span class="skill-name">MongoDB</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-firebase-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Firebase</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-express-original colored"></i>
+                        </div>
+                        <span class="skill-name">Express.js</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-python-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Python</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-mysql-plain colored"></i>
+                        </div>
+                        <span class="skill-name">MySQL</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="devicon-java-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Java</span>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-figma-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Figma</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-vscode-plain colored"></i>
+                        </div>
+                        <span class="skill-name">VS Code</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-npm-original-wordmark colored"></i>
+                        </div>
+                        <span class="skill-name">NPM</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-docker-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Docker</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="fas fa-terminal accent-icon"></i>
+                        </div>
+                        <span class="skill-name">Terminal</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-github-original colored"></i>
+                        </div>
+                        <span class="skill-name">GitHub</span>
+                    </div>
+                    
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-icon">
+                            <i class="devicon-git-plain colored"></i>
+                        </div>
+                        <span class="skill-name">Git</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section class="section education-section" id="education" data-section="4">
+            <div class="content">
+                <div class="section-header">
+                    <h2>Academic Journey</h2>
+                </div>
+                <div class="education-grid">
+                    <div class="card education-card">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="card-body education-body">
+                            <div class="education-meta">
+                                <h3>B.Sc. Software Engineering</h3>
+                                <span class="education-period">Kinneret Academic College · 2021 – 2026</span>
+                            </div>
+                            <p class="education-description">
+                                Comprehensive software engineering program covering full-stack development, computer networks, and AI/ML foundations.
+                            </p>
+                            <ul class="education-highlights">
+                                <li>Full-stack web development with modern frameworks</li>
+                                <li>Computer networks and distributed systems</li>
+                                <li>Machine learning and data analysis</li>
+                                <li>Team collaboration and agile methodologies</li>
+                            </ul>
+                            <div class="education-tags">
+                                <span class="education-tag">Full-Stack Development</span>
+                                <span class="education-tag">Systems Design</span>
+                                <span class="education-tag">Network Foundations</span>
+                                <span class="education-tag">Team Leadership</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card education-card">
+                        <div class="education-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="card-body education-body">
+                            <div class="education-meta">
+                                <h3>Applied Labs & Independent Work</h3>
+                                <span class="education-period">2021 – Present</span>
+                            </div>
+                            <p class="education-description">
+                                Hands-on learning through personal projects, research experiments, and real-world applications.
+                            </p>
+                            <ul class="education-highlights">
+                                <li>Built responsive web apps and PWAs</li>
+                                <li>Cloud development with Firebase and modern tooling</li>
+                                <li>Applied machine learning to real datasets</li>
+                                <li>Created data visualizations and simulations</li>
+                            </ul>
+                            <div class="education-tags">
+                                <span class="education-tag">Product Experience</span>
+                                <span class="education-tag">Cloud & DevOps</span>
+                                <span class="education-tag">AI & ML</span>
+                                <span class="education-tag">Applied Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="section contact-section" id="contact" data-section="5">
+            <div class="content">
+                <h2>Contact Me</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>khaleelazaizy@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>0546585424</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Daborya, Israel</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn-primary">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/khaleel-azaizy" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/khaleel-azaizy" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                
+                <footer>
+                    <p>&copy; 2025 Khaleel Azaizy</p>
+                </footer>
+            </div>
+        </section>
+    </div>
+    
+    <script src="Home.js"></script>
+</body>
+</html>
