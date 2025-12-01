@@ -57,7 +57,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+    overflow-x: hidden;}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -210,7 +210,7 @@ body.loader-finished .container {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding: 2rem;
+    padding: 0;
 }
 
 .content {
