@@ -452,7 +452,7 @@ body.loader-finished .container {
     color: #f8f9f5;
     background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), rgba(3, 4, 4, 0.95));
     overflow: hidden;
-    padding: clamp(3rem, 6vw, 6rem) 2rem;
+    padding:0 0 0 2rem;
 }
 
 .hero-section::before {
@@ -494,10 +494,11 @@ body.loader-finished .container {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 4.75rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 700;
+    width: 100%;
     line-height: 1.1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .hero-description {
     color: var(--text);
@@ -617,7 +618,6 @@ body[data-theme="light"] .hero-cta {
 .about-text {
     width: 100%;
     position: relative;
-    padding: 2.5rem;
     overflow: hidden;
 }
 
@@ -1452,11 +1452,13 @@ body.slider-no-select {
 .education-section {
     background: var(--SecondBackground);
     color: var(--text);
+    padding: 10rem 2rem;
+    width: 100%;
 }
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -1874,17 +1876,11 @@ h2 {
     #navbar{
         display: none;
     }
-    .hero-title {
-        font-size: clamp(2.5rem, 9vw, 3.2rem);
-    }
-
+    
     .hero-description {
         font-size: 1rem;
     }
 
-    .portrait-ring {
-        width: 80vw;
-    }
 
     .hero-content {
         padding-top: 0;
@@ -1903,7 +1899,7 @@ h2 {
     .hero-portrait,
     .hero-copy {
         flex: 1 0 50%;
-        min-height: 50vh;
+        min-height: 30vh;
         width: 100%;
     }
 
@@ -1951,10 +1947,6 @@ h2 {
     .skills-categories {
         grid-template-columns: 1fr;
         gap: 2rem;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
     }
     
     h2 {
