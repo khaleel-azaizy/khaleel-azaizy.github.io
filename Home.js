@@ -179,31 +179,6 @@ function updateNavbarState() {
     navbar.classList.add('navbar-compact');
 }
 
-// Theme toggle functionality
-function toggleTheme() {
-    const body = document.body;
-    const themeToggle = document.querySelector('.theme-toggle i');
-    
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.setAttribute('data-theme', 'light');
-        themeToggle.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        themeToggle.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'dark');
-    }
-}
-
-// Load saved theme on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    const themeToggle = document.querySelector('.theme-toggle i');
-    
-    document.body.setAttribute('data-theme', savedTheme);
-    themeToggle.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-});
-
 // Loader handling
 document.addEventListener('DOMContentLoaded', function() {
     const loader = document.getElementById('loader');
@@ -259,40 +234,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.style.background = '';
                 contactForm.reset();
             }, 3000);
-        });
-    }
-    
-    // Skills filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    if (filterButtons.length > 0 && skillCards.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filter = button.getAttribute('data-filter');
-                
-                // Filter skill cards
-                skillCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'flex';
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            if (card.style.opacity === '0') {
-                                card.style.display = 'none';
-                            }
-                        }, 300);
-                    }
-                });
-            });
         });
     }
     
@@ -486,8 +427,6 @@ function setupSliderDrag() {
             return;
         }
 
-        stopAutoSlide();
-
         isDraggingSlider = true;
         sliderRecentlyDragged = false;
         pointerCaptured = false;
@@ -615,26 +554,6 @@ function setupSliderDrag() {
     }, true);
 }
 
-// Auto-slide functionality (optional)
-let autoSlideInterval;
-
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        if (currentSlide < maxSlides) {
-            slideProjects(1);
-        } else {
-            currentSlide = 0;
-            updateSliderPosition();
-            updateSliderButtons();
-        }
-    }, 5000); // Change slide every 5 seconds
-}
-
-function stopAutoSlide() {
-    if (autoSlideInterval) {
-        clearInterval(autoSlideInterval);
-    }
-}
 
 // Initialize slider when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -642,18 +561,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         initProjectsSlider();
         
-        // Optional: Start auto-slide
-         startAutoSlide();
-        
-        // Pause auto-slide on hover
-        const sliderContainer = document.querySelector('.projects-slider-container');
-        if (sliderContainer) {
-            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-            sliderContainer.addEventListener('mouseleave', () => {
-                // Uncomment to re-enable auto-slide
-                // startAutoSlide();
-            });
-        }
     }, 100);
 });
 
@@ -857,21 +764,27 @@ function initAboutCursorEffect() {
 
     const highlightables = Array.from(aboutText.querySelectorAll('.glow-segment, .about-text .highlight'));
     if (!highlightables.length) return;
-
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
     let rafId;
     let idleTimeout;
     let autoplayId;
     let isAutoplay = false;
+    let interactiveMode = false;
     const radius = 200;
     const IDLE_DELAY = 2000;
     const AUTOPLAY_DURATION = 6000;
 
+    const setAllGlow = (value) => {
+        highlightables.forEach((el) => el.style.setProperty('--glow', value));
+    };
+
     const clearGlow = () => {
         if (rafId) cancelAnimationFrame(rafId);
-        highlightables.forEach((el) => el.style.setProperty('--glow', '0'));
+        setAllGlow('0');
     };
 
     const applyGlow = (clientX, clientY) => {
+        if (!interactiveMode) return;
         if (rafId) cancelAnimationFrame(rafId);
         rafId = requestAnimationFrame(() => {
             highlightables.forEach((el) => {
@@ -891,7 +804,7 @@ function initAboutCursorEffect() {
     };
 
     const stopAutoplay = () => {
-        if (!isAutoplay) return;
+        if (!interactiveMode || !isAutoplay) return;
         isAutoplay = false;
         if (autoplayId) {
             cancelAnimationFrame(autoplayId);
@@ -900,7 +813,7 @@ function initAboutCursorEffect() {
     };
 
     const startAutoplay = () => {
-        if (isAutoplay) return;
+        if (!interactiveMode || isAutoplay) return;
         isAutoplay = true;
         idleTimeout = null;
 
@@ -943,7 +856,7 @@ function initAboutCursorEffect() {
     };
 
     const scheduleAutoplay = () => {
-        if (isAutoplay) return;
+        if (!interactiveMode || isAutoplay) return;
         if (idleTimeout) clearTimeout(idleTimeout);
         idleTimeout = setTimeout(startAutoplay, IDLE_DELAY);
     };
@@ -956,6 +869,7 @@ function initAboutCursorEffect() {
     };
 
     const handlePointerActivity = (event) => {
+        if (!interactiveMode) return;
         stopAutoplay();
         cancelIdleTimer();
         applyGlow(event.clientX, event.clientY);
@@ -963,19 +877,63 @@ function initAboutCursorEffect() {
     };
 
     const handlePointerLeave = () => {
+        if (!interactiveMode) return;
         stopAutoplay();
         cancelIdleTimer();
         clearGlow();
         scheduleAutoplay();
     };
 
-    scheduleAutoplay();
+    const enableInteractiveMode = () => {
+        if (interactiveMode) return;
+        interactiveMode = true;
+        setAllGlow('0');
+        scheduleAutoplay();
+        aboutText.addEventListener('pointermove', handlePointerActivity);
+        aboutText.addEventListener('pointerenter', handlePointerActivity);
+        aboutText.addEventListener('pointerleave', handlePointerLeave);
+    };
 
-    aboutText.addEventListener('pointermove', handlePointerActivity);
-    aboutText.addEventListener('pointerenter', handlePointerActivity);
-    aboutText.addEventListener('pointerleave', handlePointerLeave);
+    const disableInteractiveMode = () => {
+        if (!interactiveMode) return;
+        interactiveMode = false;
+        stopAutoplay();
+        cancelIdleTimer();
+        if (rafId) cancelAnimationFrame(rafId);
+        aboutText.removeEventListener('pointermove', handlePointerActivity);
+        aboutText.removeEventListener('pointerenter', handlePointerActivity);
+        aboutText.removeEventListener('pointerleave', handlePointerLeave);
+    };
+
+    const applyAlwaysGlow = () => {
+        disableInteractiveMode();
+        aboutText.classList.add('always-glow');
+        setAllGlow('1');
+    };
+
+    const applyInteractiveGlow = () => {
+        aboutText.classList.remove('always-glow');
+        enableInteractiveMode();
+    };
+
+    const handleViewportChange = () => {
+        if (mobileQuery.matches) {
+            applyAlwaysGlow();
+        } else {
+            applyInteractiveGlow();
+        }
+    };
+
+    handleViewportChange();
+
+    if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', handleViewportChange);
+    } else {
+        mobileQuery.addListener(handleViewportChange);
+    }
 
     document.addEventListener('visibilitychange', () => {
+        if (!interactiveMode) return;
         if (document.hidden) {
             stopAutoplay();
             cancelIdleTimer();
