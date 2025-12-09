@@ -944,6 +944,26 @@ function initAboutCursorEffect() {
     });
 }
 
+// Copy to Clipboard Function
+function copyToClipboard(text, button) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Add the 'copied' class for visual feedback
+        button.classList.add('copied');
+        const originalIcon = button.innerHTML;
+        
+        // Change icon to checkmark
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        
+        // Revert after 2 seconds
+        setTimeout(() => {
+            button.classList.remove('copied');
+            button.innerHTML = originalIcon;
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
     // Delay to ensure all elements are loaded
