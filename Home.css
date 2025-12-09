@@ -39,6 +39,11 @@ body {
     background: var(--background);
 }
 
+html, .container, .section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body:not(.loader-finished) {
     overflow: hidden;
 }
@@ -191,6 +196,7 @@ body.loader-finished .container {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     z-index: 1;
     padding: 2rem;
 }
@@ -483,7 +489,7 @@ body.loader-finished .container {
 }
 
 .hero-title {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
     width: 100%;
     line-height: 1.1;
@@ -494,6 +500,7 @@ body.loader-finished .container {
     -webkit-background-clip: text;
     color: transparent;
     animation: animate 30s linear infinite;
+    filter: brightness(1.5);
 }
 @keyframes animate {
    to{
@@ -723,6 +730,7 @@ body.loader-finished .container {
 .projects-slider-container {
     position: relative;
     margin-top: 3rem;
+    overflow: hidden;
 }
 
 .projects-slider {
@@ -1576,6 +1584,7 @@ body.slider-no-select {
 .skills-section {
     background: var(--background);
     color: var(--text);
+   
 }
 
 .section-header {
@@ -2302,6 +2311,7 @@ h2 {
 
 
 @media (max-width: 768px) {
+   
     .projects-grid {
         gap: 1rem;
         padding: 0.5rem;
