@@ -18,7 +18,7 @@
     --nav-toggle-color: rgba(223, 243, 233, 0.85);
     --nav-ring: rgba(39, 217, 125, 0.35);
     --background: #050805;
-    --SecondBackground: #082216;
+    --SecondBackground:#002500;
     --card-bg: #0e150f;
     --text: #c4d6c5;
     --shadow: rgba(0,0,0,0.7);
@@ -178,8 +178,8 @@ body.loader-finished .container {
         box-shadow: 0 0 18px rgba(39, 217, 125, 0.4);
     }
     50% {
-        opacity: 0.7;
-        box-shadow: 0 0 32px rgba(39, 217, 125, 0.8);
+        opacity: 1;
+        box-shadow: 0 0 40px rgba(39, 217, 125, 0.8);
     }
 }
 
@@ -420,11 +420,11 @@ body.loader-finished .container {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2px 2px at 12% 22%, rgba(255, 255, 255, 0.85), transparent 90%),
-        radial-gradient(2px 2px at 38% 78%, rgba(255, 255, 255, 0.65), transparent 90%),
-        radial-gradient(2px 2px at 72% 35%, rgba(255, 255, 255, 0.9), transparent 90%),
-        radial-gradient(2px 2px at 88% 62%, rgba(255, 255, 255, 0.7), transparent 90%),
-        radial-gradient(2px 2px at 55% 15%, rgba(255, 255, 255, 0.6), transparent 90%);
+        radial-gradient(2px 2px at 12% 22%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 38% 78%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 72% 35%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 88% 62%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 55% 15%, rgb(255, 255, 255), transparent 90%);
     background-size: 180px 180px, 260px 260px, 320px 320px, 420px 420px, 540px 540px;
     background-repeat: repeat;
     opacity: 1;
@@ -437,11 +437,11 @@ body.loader-finished .container {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2px 2px at 12% 22%, rgba(255, 255, 255, 0.85), transparent 90%),
-        radial-gradient(2px 2px at 38% 78%, rgba(255, 255, 255, 0.65), transparent 90%),
-        radial-gradient(2px 2px at 72% 35%, rgba(255, 255, 255, 0.9), transparent 90%),
-        radial-gradient(2px 2px at 88% 62%, rgba(255, 255, 255, 0.7), transparent 90%),
-        radial-gradient(2px 2px at 55% 15%, rgba(255, 255, 255, 0.6), transparent 90%);
+        radial-gradient(2px 2px at 12% 22%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 38% 78%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 72% 35%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 88% 62%, rgb(255, 255, 255), transparent 90%),
+        radial-gradient(2px 2px at 55% 15%, rgb(255, 255, 255), transparent 90%);
     background-size: 180px 180px, 260px 260px, 320px 320px, 420px 420px, 540px 540px;
     background-repeat: repeat;
     opacity: 1;
@@ -449,7 +449,23 @@ body.loader-finished .container {
     pointer-events: none;
     z-index: 0;
 }
-
+.education-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 12% 22%, rgb(84, 89, 18), transparent 90%),
+        radial-gradient(2px 2px at 38% 78%, rgb(96, 96, 96), transparent 90%),
+        radial-gradient(2px 2px at 72% 35%, rgb(22, 89, 18), transparent 90%),
+        radial-gradient(2px 2px at 88% 62%, rgb(84, 84, 84), transparent 90%),
+        radial-gradient(2px 2px at 55% 15%, rgb(22, 89, 18), transparent 90%);
+    background-size: 180px 180px, 260px 260px, 320px 320px, 420px 420px, 540px 540px;
+    background-repeat: repeat;
+    opacity: 1;
+    animation: star-drift 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
 @keyframes star-drift {
     from {
         background-position: 0 0, 50px -30px, -60px 40px, 90px 90px, -30px 120px;
@@ -491,6 +507,7 @@ body.loader-finished .container {
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
+    height: 5rem;
     width: 100%;
     line-height: 1.1;
     margin-bottom: 1rem;
@@ -722,8 +739,7 @@ body.loader-finished .container {
     background: var(--SecondBackground);
     color: var(--text);
     overflow: hidden;
-    height: 90vh;
-    border-radius: 50px;
+   
 }
 
 /* Projects Slider */
@@ -735,10 +751,9 @@ body.loader-finished .container {
 
 .projects-slider {
     overflow: hidden;
-    border-radius: 0;
+    border-radius: 50px;
     background: transparent;
-    width: 100%;
-    max-width: 1500px;
+    width: 90%;
     margin: 0 auto;
     perspective: 1600px;
     cursor: grab;
@@ -809,12 +824,12 @@ body.slider-no-select {
 .slider-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background: rgba(39, 217, 125, 0.9);
+    background: transparent;
     border: none;
-    color: var(--light);
+    color: var(--text);
     width: 50px;
     height: 50px;
+    font-size: 2rem;
     border-radius: 50%;
     cursor: pointer;
     transition: all var(--transition);
@@ -822,22 +837,22 @@ body.slider-no-select {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(39, 217, 125, 0.3);
-}
-
-.slider-btn:hover {
-    background: var(--primary);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 25px rgba(39, 217, 125, 0.4);
+    
 }
 
 .prev-btn {
-    left: -25px;
+     transition: all var(--transition);
 }
-
+.prev-btn:hover{
+    transform: translateX(-4px) scale(1.2);
+    color: var(--primary-light);
+}
 .next-btn {
-    right: -25px;
+    right: -8px;
+}
+.next-btn:hover{
+    transform: translateX(4px) scale(1.2);
+    color: var(--primary-light);
 }
 
 /* Project Cards - Dark Sophisticated Design */
@@ -847,9 +862,10 @@ body.slider-no-select {
     flex-direction: column;
     padding: 2.5rem 2rem;
     height: 63vh;
+    max-height: 700px;
     width: 26vw;
     min-width: 320px;
-    max-width: 100%;
+    max-width: 500px;
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1094,7 +1110,7 @@ body.slider-no-select {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     color: #fff;
     height: 100%;
@@ -1203,7 +1219,7 @@ body.slider-no-select {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: auto;
+    margin-top: 1.5rem;
     padding-top: 0;
     border-top: none;
     transition: all 0.4s ease;
@@ -1797,8 +1813,140 @@ body.slider-no-select {
 .education-section {
     background: var(--SecondBackground);
     color: var(--text);
-    padding: 10rem 2rem;
+    isolation: isolate;
+}
+
+.education-container {
+    width: 95vw;
+    max-width: 1800px;
+    align-items: start;
+}
+
+.education-text {
     width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.education-intro {
+    font-size: 2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.education-line {
+    display: block;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.6s ease;
+    transition-delay: calc(var(--line-index, 0) * 0.12s);
+}
+
+.education-text.visible .education-line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.education-highlight {
+    display: inline-block;
+    --segment-base: 0.35;
+    color: rgba(39, 217, 125, 0.95);
+    font-weight: 600;
+}
+
+.education-card {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    transition: all var(--transition);
+    display: block;
+    gap: 0;
+    margin-top: 2rem;
+}
+
+.education-card:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.education-icon {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border-radius: 0;
+    display: inline;
+    margin-bottom: 0;
+    align-self: unset;
+}
+
+.education-icon i {
+    font-size: inherit;
+    color: inherit;
+    display: none;
+}
+
+.education-meta-icons {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.education-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    text-align: center;
+}
+
+.meta-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(39, 217, 125, 0.2), rgba(39, 217, 125, 0.1));
+    border: 2px solid rgba(39, 217, 125, 0.4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: rgba(39, 217, 125, 0.9);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.education-meta-item:hover .meta-icon {
+    transform: scale(1.1) translateY(-5px);
+    border-color: rgba(39, 217, 125, 0.7);
+    background: linear-gradient(135deg, rgba(39, 217, 125, 0.3), rgba(39, 217, 125, 0.2));
+    box-shadow: 0 8px 20px rgba(39, 217, 125, 0.15);
+}
+
+.meta-label {
+    font-size: 0.9rem;
+    color: rgba(196, 214, 197, 0.85);
+    font-weight: 500;
+}
+
+
+.education-meta h3 {
+    display: none;
+}
+
+.education-period {
+    display: none;
+}
+
+.education-description {
+    line-height: 1.6;
+    margin: 1rem 0;
+    opacity: 0.95;
+    color: rgba(196, 214, 197, 0.95);
 }
 
 .education-grid {
@@ -1806,102 +1954,6 @@ body.slider-no-select {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
-}
-
-.education-card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid rgba(39, 217, 125, 0.2);
-    box-shadow: 0 10px 30px var(--shadow);
-    transition: all var(--transition);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.education-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 15px 40px rgba(39, 217, 125, 0.3);
-}
-
-.education-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    align-self: flex-start;
-}
-
-.education-icon i {
-    font-size: 1.8rem;
-    color: var(--light);
-}
-
-.education-body {
-    flex: 1;
-}
-
-.education-meta h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-}
-
-.education-period {
-    color: var(--primary-light);
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-.education-description {
-    line-height: 1.6;
-    margin: 1rem 0;
-    opacity: 0.9;
-}
-
-.education-highlights {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem 0;
-}
-
-.education-highlights li {
-    padding: 0.5rem 0;
-    position: relative;
-    padding-left: 1.5rem;
-    line-height: 1.5;
-}
-
-.education-highlights li:before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--primary-light);
-    font-weight: bold;
-}
-
-.education-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.education-tag {
-    background: rgba(39, 217, 125, 0.1);
-    color: var(--primary-dark);
-    padding: 0.4rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(39, 217, 125, 0.3);
 }
 
 /* Contact Section */
@@ -2129,14 +2181,38 @@ footer {
 
 
 
-/* Common heading styles */
+/* Universal Section Header Style */
 h2 {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    padding-bottom: 1.5rem;
+    color: rgba(39, 217, 125, 0.95);
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
 }
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(39, 217, 125, 0.8), transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba(39, 217, 125, 0.2);
+    transition: all 0.3s ease;
+}
+
+h2:hover::after {
+    width: 140px;
+    box-shadow: 0 0 25px rgba(39, 217, 125, 0.4);
+}
+
 
 
 @media (max-width: 1024px) {
@@ -2163,7 +2239,7 @@ h2 {
         width: 88%;
         padding: 0.55rem 0.75rem;
     }       
-    .intro-line {
+    .intro-line ,.education-line{
         font-size: 1.5rem;
         line-height: 1.6;
     }
@@ -2510,6 +2586,65 @@ h2 {
     
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    /* Education Section Mobile */
+    .education-intro {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .education-line {
+        display: block;
+    }
+
+    .education-grid {
+        margin-top: 1.5rem;
+    }
+
+    .education-meta-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .education-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
+    }
+
+    .meta-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 1.2rem;
+    }
+
+    .meta-label {
+        font-size: 0.85rem;
+    }
+
+    .education-highlights {
+        margin: 1rem 0;
+    }
+
+    .education-highlights li {
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+    }
+
+    .education-tags {
+        gap: 0.4rem;
+        margin-top: 1rem;
+    }
+
+    .education-tag {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
     }
 }
 

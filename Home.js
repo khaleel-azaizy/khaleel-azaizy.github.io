@@ -693,17 +693,20 @@ function initFloatingIconsAnimation() {
 
 // Education cards hover effects
 function initEducationAnimations() {
-    const educationCards = document.querySelectorAll('.education-card');
+    const educationText = document.querySelector('.education-text');
     
-    educationCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
-        });
+    if (educationText) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
         
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+        observer.observe(educationText);
+    }
 }
 
 // Break about text into small segments for localized glow effect
