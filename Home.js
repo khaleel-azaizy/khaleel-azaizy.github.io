@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.section');
     const totalSections = sections.length;
-    const DESKTOP_BREAKPOINT = 1024;
-    let enhancedScrollEnabled = window.innerWidth >= DESKTOP_BREAKPOINT;
+    // Keep breakpoint behavior consistent with CSS: mobile/tablet styles apply at <= 1024px.
+    const DESKTOP_BREAKPOINT = 1025;
+    const isEnhancedScroll = () => window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches;
+    let enhancedScrollEnabled = isEnhancedScroll();
     let currentSection = 0;
     
     function resetSectionsStyles() {
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleResize() {
-        const shouldEnable = window.innerWidth >= DESKTOP_BREAKPOINT;
+        const shouldEnable = isEnhancedScroll();
         if (shouldEnable !== enhancedScrollEnabled) {
             enhancedScrollEnabled = shouldEnable;
             if (enhancedScrollEnabled) {
@@ -140,6 +142,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize section indicator
     updateCurrentSectionIndicator(0);
+
+    // Mobile + desktop nav click handling: prevent default anchor jumps (hash jumps)
+    // and avoid double-triggering inline onclick handlers.
+    document.querySelectorAll('#navbar .nav-links a[data-section]').forEach(link => {
+        link.removeAttribute('onclick');
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const sectionIndex = Number(link.getAttribute('data-section'));
+            if (Number.isFinite(sectionIndex)) {
+                scrollToSection(sectionIndex);
+            }
+        });
+    });
     
     // Optional: Add keyboard navigation
     document.addEventListener('keydown', function(e) {
@@ -153,20 +170,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation function for smooth scrolling to sections
 function scrollToSection(sectionIndex) {
-    const enhanced = window.innerWidth >= 1024;
+    const enhanced = window.matchMedia('(min-width: 1025px)').matches;
+
+    const targetSection = document.querySelector(`.section[data-section="${sectionIndex}"]`);
+    if (!targetSection) {
+        return false;
+    }
 
     if (enhanced) {
         const windowHeight = window.innerHeight;
-            const targetScroll = sectionIndex * windowHeight * 1.2;        window.scrollTo({
+        const targetScroll = sectionIndex * windowHeight * 1.2;
+        window.scrollTo({
             top: targetScroll,
             behavior: 'smooth'
         });
     } else {
-        const targetSection = document.querySelector(`.section[data-section="${sectionIndex}"]`);
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // Offset scroll so the fixed navbar doesn't cover the section heading on mobile.
+        const navbar = document.getElementById('navbar');
+        const navbarRect = navbar ? navbar.getBoundingClientRect() : null;
+        const navbarTop = navbar ? (parseFloat(getComputedStyle(navbar).top) || 0) : 0;
+        const navOffset = navbarRect ? (navbarRect.height + navbarTop + 12) : 0;
+
+        const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+        });
     }
+
+    return false;
 }
 
 function updateNavbarState() {
