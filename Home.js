@@ -1,11 +1,75 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.section');
     const totalSections = sections.length;
-    // Keep breakpoint behavior consistent with CSS: mobile/tablet styles apply at <= 1024px.
-    const DESKTOP_BREAKPOINT = 1025;
-    const isEnhancedScroll = () => window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches;
-    let enhancedScrollEnabled = isEnhancedScroll();
+    const DESKTOP_BREAKPOINT = 1024;
+    let enhancedScrollEnabled = window.innerWidth >= DESKTOP_BREAKPOINT;
     let currentSection = 0;
+
+    function initMeteorEffects() {
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+            return;
+        }
+
+        const isMobile = window.innerWidth < 1024;
+
+        const targetSections = ['hero', 'about', 'education']
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+
+        const randomBetween = (min, max) => min + Math.random() * (max - min);
+
+        targetSections.forEach((sectionEl) => {
+            sectionEl.classList.add('has-meteors');
+
+            let layer = sectionEl.querySelector('.meteor-layer');
+            if (!layer) {
+                layer = document.createElement('div');
+                layer.className = 'meteor-layer';
+                layer.setAttribute('aria-hidden', 'true');
+                sectionEl.appendChild(layer);
+            }
+
+            if (layer.childElementCount > 0) {
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+            const meteorCount = isMobile ? 2 : 4;
+
+            for (let i = 0; i < meteorCount; i++) {
+                const meteor = document.createElement('span');
+                meteor.className = 'meteor';
+
+                meteor.style.setProperty('--meteor-top', `${randomBetween(0, isMobile ? 70 : 80).toFixed(2)}%`);
+                meteor.style.setProperty('--meteor-left', `${randomBetween(-10, isMobile ? 60 : 70).toFixed(2)}%`);
+                meteor.style.setProperty('--meteor-length', `${randomBetween(isMobile ? 32 : 50, isMobile ? 55 : 80).toFixed(0)}px`);
+                meteor.style.setProperty('--meteor-thickness', `${randomBetween(isMobile ? 1 : 1, isMobile ? 2 : 2.5).toFixed(1)}px`);
+                meteor.style.setProperty('--meteor-duration', `${randomBetween(isMobile ? 1.6 : 1.8, isMobile ? 2.8 : 3.8).toFixed(2)}s`);
+                meteor.style.setProperty('--meteor-delay', `${randomBetween(isMobile ? 3 : 2, isMobile ? 8 : 6.5).toFixed(2)}s`);
+                 meteor.style.setProperty('--meteor-rotation', `${(isMobile ? -120 : -150)}deg`);
+
+
+                fragment.appendChild(meteor);
+            }
+
+            layer.appendChild(fragment);
+        });
+    }
+
+    function setActiveNavLink(sectionIndex) {
+        const sectionNames = ['Home', 'About', 'Projects', 'Skills', 'Education', 'Contact'];
+        const currentSectionName = document.querySelector('.current-section-name');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        if (currentSectionName) {
+            currentSectionName.textContent = sectionNames[sectionIndex] || 'Home';
+        }
+
+        navLinks.forEach((link, index) => {
+            link.classList.toggle('active', index === sectionIndex);
+        });
+    }
     
     function resetSectionsStyles() {
         sections.forEach(section => {
@@ -59,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const windowHeight = window.innerHeight;
-        const sectionTransitionHeight = windowHeight * 1.2;
+        const sectionTransitionHeight = windowHeight * 1;
         const currentSectionIndex = Math.floor(scrollTop / sectionTransitionHeight);
         const actualCurrentSection = Math.min(currentSectionIndex, totalSections - 1);
         const sectionScrollProgress = (scrollTop % sectionTransitionHeight) / sectionTransitionHeight;
@@ -104,6 +168,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Navbar click handling
+
+    const navLinks = document.querySelectorAll('#navbar .nav-links a');
+    navLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            const raw = link.getAttribute('data-section');
+            const sectionIndex = raw === null ? NaN : Number(raw);
+
+            if (Number.isNaN(sectionIndex)) {
+                return;
+            }
+
+            e.preventDefault();
+
+            currentSection = sectionIndex;
+            setActiveNavLink(sectionIndex);
+
+            // Keep URL hash updated without triggering a browser scroll jump.
+            const targetSection = document.querySelector(`.section[data-section="${sectionIndex}"]`);
+            if (targetSection && targetSection.id) {
+                history.replaceState(null, '', `#${targetSection.id}`);
+            }
+
+            scrollToSection(sectionIndex);
+        }, { passive: false });
+    });
     
     
     // Throttle scroll events for better performance
@@ -120,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleResize() {
-        const shouldEnable = isEnhancedScroll();
+        const shouldEnable = window.innerWidth >= DESKTOP_BREAKPOINT;
         if (shouldEnable !== enhancedScrollEnabled) {
             enhancedScrollEnabled = shouldEnable;
             if (enhancedScrollEnabled) {
@@ -143,20 +234,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize section indicator
     updateCurrentSectionIndicator(0);
 
-    // Mobile + desktop nav click handling: prevent default anchor jumps (hash jumps)
-    // and avoid double-triggering inline onclick handlers.
-    document.querySelectorAll('#navbar .nav-links a[data-section]').forEach(link => {
-        link.removeAttribute('onclick');
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const sectionIndex = Number(link.getAttribute('data-section'));
-            if (Number.isFinite(sectionIndex)) {
-                scrollToSection(sectionIndex);
-            }
-        });
-    });
+    // Meteors (Hero + About + Education)
+    initMeteorEffects();
     
     // Optional: Add keyboard navigation
     document.addEventListener('keydown', function(e) {
@@ -170,35 +249,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation function for smooth scrolling to sections
 function scrollToSection(sectionIndex) {
-    const enhanced = window.matchMedia('(min-width: 1025px)').matches;
-
-    const targetSection = document.querySelector(`.section[data-section="${sectionIndex}"]`);
-    if (!targetSection) {
-        return false;
-    }
+    const enhanced = window.innerWidth >= 1024;
 
     if (enhanced) {
         const windowHeight = window.innerHeight;
-        const targetScroll = sectionIndex * windowHeight * 1.2;
+        const targetScroll = sectionIndex * windowHeight * 1;
         window.scrollTo({
             top: targetScroll,
             behavior: 'smooth'
         });
     } else {
-        // Offset scroll so the fixed navbar doesn't cover the section heading on mobile.
-        const navbar = document.getElementById('navbar');
-        const navbarRect = navbar ? navbar.getBoundingClientRect() : null;
-        const navbarTop = navbar ? (parseFloat(getComputedStyle(navbar).top) || 0) : 0;
-        const navOffset = navbarRect ? (navbarRect.height + navbarTop + 12) : 0;
-
-        const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - navOffset;
-        window.scrollTo({
-            top: Math.max(0, targetTop),
-            behavior: 'smooth'
-        });
+        const targetSection = document.querySelector(`.section[data-section="${sectionIndex}"]`);
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
-
-    return false;
 }
 
 function updateNavbarState() {
