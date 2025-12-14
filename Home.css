@@ -1,6 +1,6 @@
 :root {
     --primary: #00b15e2c;
-    --primary-light: #27d97d;
+    --primary-light: #25c773;
     --primary-dark: #008245;
     --secondary: #ffffff;
     --dark: #111;
@@ -184,7 +184,7 @@ body.loader-finished .container {
 }
 
 .container {
-    height: 1200vh; /* 6 sections × 2 viewport heights each for smooth transitions */
+    height: 720vh; /* 6 sections × 1.2 viewport heights each for smooth transitions */
 }
 
 .section {
@@ -454,18 +454,109 @@ body.loader-finished .container {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2px 2px at 12% 22%, rgb(84, 89, 18), transparent 90%),
-        radial-gradient(2px 2px at 38% 78%, rgb(96, 96, 96), transparent 90%),
-        radial-gradient(2px 2px at 72% 35%, rgb(22, 89, 18), transparent 90%),
-        radial-gradient(2px 2px at 88% 62%, rgb(84, 84, 84), transparent 90%),
-        radial-gradient(2px 2px at 55% 15%, rgb(22, 89, 18), transparent 90%);
+        radial-gradient(2px 2px at 12% 22%, rgb(236, 236, 236), transparent 90%),
+        radial-gradient(2px 2px at 38% 78%, rgb(207, 207, 207), transparent 90%),
+        radial-gradient(2px 2px at 72% 35%, rgb(23, 196, 14), transparent 90%),
+        radial-gradient(2px 2px at 88% 62%, rgb(182, 181, 181), transparent 90%),
+        radial-gradient(2px 2px at 55% 15%, rgb(34, 179, 26), transparent 90%);
     background-size: 180px 180px, 260px 260px, 320px 320px, 420px 420px, 540px 540px;
     background-repeat: repeat;
     opacity: 1;
     animation: star-drift 60s linear infinite;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
+
+.hero-section::after {
+    z-index: -1;
+}
+
+.about-section::after {
+    z-index: -1;
+}
+
+/* Meteor shower (top-left → bottom-right). Uses one animation with timed bursts for a more natural look. */
+.hero-section::before,
+.about-section::before,
+.education-section::before {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    pointer-events: none;
+    z-index: 0;
+    transform: rotate(45deg);
+    transform-origin: center;
+    background-repeat: no-repeat;
+    mix-blend-mode: screen;
+    opacity: 0;
+    will-change: background-position, opacity;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.28));
+
+    background-image:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 52%, rgba(255,255,255,0.2) 62%, rgba(255,255,255,0) 100%);
+
+    background-size: 240px 2px, 190px 2px, 300px 2px, 220px 2px, 260px 2px, 170px 2px;
+    background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%;
+
+    animation: meteor-shower 20.5s linear infinite;
+}
+
+/* Slight greenish glow for the education background (keeps the same white meteors) */
+.education-section::before {
+    filter: drop-shadow(0 0 10px rgba(0, 217, 125, 0.28));
+}
+
+@keyframes meteor-shower {
+    0%, 8% {
+        opacity: 0;
+        background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%;
+    }
+
+    /* Meteor 1 */
+    10% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    20% { opacity: 1; background-position:  260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    22% { opacity: 0; background-position:  260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+
+    /* Meteor 2 */
+    28% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    38% { opacity: 1; background-position: -260% 18%,  260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    40% { opacity: 0; background-position: -260% 18%,  260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+
+    /* Meteor 3 */
+    46% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    58% { opacity: 1; background-position: -260% 18%, -260% 32%,  260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    60% { opacity: 0; background-position: -260% 18%, -260% 32%,  260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+
+    /* Meteor 4 */
+    66% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    76% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%,  260% 60%, -260% 74%, -260% 88%; }
+    78% { opacity: 0; background-position: -260% 18%, -260% 32%, -260% 46%,  260% 60%, -260% 74%, -260% 88%; }
+
+    /* Meteor 5 */
+    84% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%; }
+    94% { opacity: 1; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%,  260% 74%, -260% 88%; }
+    96% { opacity: 0; background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%,  260% 74%, -260% 88%; }
+
+    100% {
+        opacity: 0;
+        background-position: -260% 18%, -260% 32%, -260% 46%, -260% 60%, -260% 74%, -260% 88%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-section::before,
+    .about-section::before,
+    .education-section::before {
+        animation: none;
+        opacity: 0;
+    }
+}
+
 @keyframes star-drift {
     from {
         background-position: 0 0, 50px -30px, -60px 40px, 90px 90px, -30px 120px;
@@ -558,13 +649,13 @@ body.loader-finished .container {
     left: 0;
     width: 0;
     height: 100%;
-    background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+    background: linear-gradient(120deg, var(--primary-dark), var(--primary-light));
     transition: width 0.4s ease;
     z-index: -1;
 }
 
 .hero-cta:hover {
-    transform: translateY(-3px);
+    transform: scale(1.05);
     border-color: var(--primary);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }

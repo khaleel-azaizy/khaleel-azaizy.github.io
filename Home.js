@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const windowHeight = window.innerHeight;
-        const sectionTransitionHeight = windowHeight * 2;
+        const sectionTransitionHeight = windowHeight * 1.2;
         const currentSectionIndex = Math.floor(scrollTop / sectionTransitionHeight);
         const actualCurrentSection = Math.min(currentSectionIndex, totalSections - 1);
         const sectionScrollProgress = (scrollTop % sectionTransitionHeight) / sectionTransitionHeight;
@@ -157,8 +157,7 @@ function scrollToSection(sectionIndex) {
 
     if (enhanced) {
         const windowHeight = window.innerHeight;
-        const targetScroll = sectionIndex * windowHeight * 2; // Each section takes 2vh of scroll space
-        window.scrollTo({
+            const targetScroll = sectionIndex * windowHeight * 1.2;        window.scrollTo({
             top: targetScroll,
             behavior: 'smooth'
         });
