@@ -409,7 +409,7 @@ body.loader-finished .container {
 .hero-section {
     position: relative;
     color: #f8f9f5;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), rgba(3, 4, 4, 0.95));
+    background: var(--background);
     overflow: hidden;
     padding:0 0 0 2rem;
     isolation: isolate;
@@ -577,7 +577,8 @@ body.loader-finished .container {
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
-    height: 5rem;
+    min-height: fit-content;
+    height: clamp(3rem, 15vh, 8rem);
     width: 100%;
     line-height: 1.1;
     margin-bottom: 1rem;
